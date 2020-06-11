@@ -28,60 +28,68 @@
                 <Button x:Name="ButtonLogin" Content="Login" FontSize="12" PreviewMouseRightButtonDown="ButtonLogin_PreviewMouseRightButtonDown" Click="ButtonLogin_Click" />
 
             </StackPanel>
-            <StackPanel x:Name="StackpanelMainLeft">
+            <StackPanel x:Name="StackPanelMainLeft">
                 <StackPanel Orientation="Horizontal">
                     <Label Content=" " MinWidth="80" />
                     <Label Content="Eingabe" MinWidth="180" HorizontalContentAlignment="Center" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Titel" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxTitel" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonTitleDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Titel löschen" />
+                    <TextBox x:Name="TextBoxTitel" MinWidth="180" Padding="5,0,5,0" TabIndex="0" />
+                    <Button x:Name="ButtonTitleDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Titel löschen" TabIndex="7" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Web-Adr" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxWebAdr" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonWebAdrDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Web-Adresse löschen" />
+                    <TextBox x:Name="TextBoxWebAdr" MinWidth="180" Padding="5,0,5,0" TabIndex="1" />
+                    <Button x:Name="ButtonWebAdrDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Web-Adresse löschen" TabIndex="8" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="User" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxUser1" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonUser1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="User löschen" />
+                    <TextBox x:Name="TextBoxUser1" MinWidth="180" Padding="5,0,5,0" TabIndex="2" />
+                    <Button x:Name="ButtonUser1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="User löschen" TabIndex="9" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Password" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxPw" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonPwDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Passwort löschen" />
+                    <TextBox x:Name="TextBoxPw" MinWidth="180" Padding="5,0,5,0" TabIndex="3" />
+                    <Button x:Name="ButtonPwDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Passwort löschen" TabIndex="10" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Opt1" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxOpt1" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonOpt1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt1 löschen" />
+                    <TextBox x:Name="TextBoxOpt1" MinWidth="180" Padding="5,0,5,0" TabIndex="4" />
+                    <Button x:Name="ButtonOpt1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt1 löschen" TabIndex="11" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Opt2" MinWidth="80" Padding="5,0,5,0" />
-                    <TextBox x:Name="TextBoxOpt2" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonOpt2Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt2 löschen" />
+                    <TextBox x:Name="TextBoxOpt2" MinWidth="180" Padding="5,0,5,0" TabIndex="5" />
+                    <Button x:Name="ButtonOpt2Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt2 löschen" TabIndex="12" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="    " MinWidth="80" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonInputStore" Content="Speichern" MinWidth="180" Padding="5,0,5,0" Margin="0,4,0,0" ToolTip="Datensatz komplett übernehmen" />
-                    <Button x:Name="ButtonInputDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Alle Eingabefelder löschen" />
+                    <Button x:Name="ButtonInputStore" Content="Speichern" MinWidth="180" Padding="5,0,5,0" Margin="0,4,0,0" ToolTip="Datensatz komplett übernehmen" TabIndex="6" />
+                    <Button x:Name="ButtonInputDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Alle Eingabefelder löschen" TabIndex="13" />
                 </StackPanel>
               
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="StackPanelPath" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,10,10,10" Grid.Row="0">
-            <Label x:Name="LabelSelectedFile" Content="selected File" Margin="0,2" HorizontalContentAlignment="Center" FontWeight="Bold" />
-            <Label x:Name="LabelSelectedPath" Content="C:/" Background="LightCoral" />
-            <Button x:Name="ButtonPath" Content="new Path" Margin="0,2" FontSize="12" Click="ButtonPath_Click" />
+        <StackPanel x:Name="StackPanelMiddle" Grid.Column="1" Grid.ColumnSpan="4" Margin="10,10,10,10" Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel x:Name="StackPanelPath">
+                <Label x:Name="LabelSelectedFile" Content="selected File" Margin="0,2" HorizontalContentAlignment="Center" FontWeight="Bold" />
+                <Label x:Name="LabelSelectedPath" Content="C:/" Background="LightCoral" />
+                <Button x:Name="ButtonPath" Content="new Path" Margin="0,2" FontSize="12" Click="ButtonPath_Click" />
+            </StackPanel>
+            <StackPanel x:Name="StackPanelTable">
+                <Label x:Name="LabelSelectedFile1" Content="dfghjklöälkjhgfghjklöälkjhg"  />
+                <Label x:Name="LabelSelectedPath1" Content="ghjklölkjhghjk"  />
+             
+            </StackPanel>
         </StackPanel>
-        <Image x:Name="ImageClock" Grid.Column="3" Margin="10,10,10,10" Source="/Resources/Clock.bmp" Grid.RowSpan="2" />
+
+        <Image x:Name="ImageClock" Grid.Column="5" Margin="10,10,10,10" Source="/Resources/Clock.bmp" Grid.RowSpan="2" />
 
     </Grid>
 </Window>

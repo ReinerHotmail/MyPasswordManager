@@ -17,8 +17,8 @@ namespace MyPasswordManager
         {
             StackPanelUser.Visibility = Visibility.Visible;
             StackPanelPath.Visibility = Visibility.Visible;
-            StackpanelMainLeft.Visibility = Visibility.Collapsed;
-         
+            StackPanelMainLeft.Visibility = Visibility.Collapsed;
+            StackPanelTable.Visibility = Visibility.Collapsed;
 
             PmPath = GetSetting("PmPath");
             SelectPasswordFile();
@@ -94,7 +94,8 @@ namespace MyPasswordManager
 
                 StackPanelUser.Visibility = Visibility.Collapsed;
                 StackPanelPath.Visibility = Visibility.Collapsed;
-                StackpanelMainLeft.Visibility = Visibility.Visible;
+                StackPanelMainLeft.Visibility = Visibility.Visible;
+                StackPanelTable.Visibility = Visibility.Visible;
             }
 
  
