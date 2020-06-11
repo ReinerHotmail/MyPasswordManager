@@ -36,42 +36,42 @@
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Titel" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxTitel" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonTitleDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonTitleDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Titel löschen" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Web-Adr" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxWebAdr" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonWebAdrDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonWebAdrDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Web-Adresse löschen" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="User" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxUser1" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonUser1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonUser1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="User löschen" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Password" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxPw" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonPwDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonPwDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Passwort löschen" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Opt1" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxOpt1" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonOpt1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonOpt1Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt1 löschen" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Opt2" MinWidth="80" Padding="5,0,5,0" />
                     <TextBox x:Name="TextBoxOpt2" MinWidth="180" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonOpt2Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" />
+                    <Button x:Name="ButtonOpt2Delete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Opt2 löschen" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="    " MinWidth="80" Padding="5,0,5,0" />
-                    <Button x:Name="ButtonInputDelete" Content="x - Löschen" MinWidth="180" Padding="5,0,5,0" Margin="0,4,0,0" />
-                   
+                    <Button x:Name="ButtonInputStore" Content="Speichern" MinWidth="180" Padding="5,0,5,0" Margin="0,4,0,0" ToolTip="Datensatz komplett übernehmen" />
+                    <Button x:Name="ButtonInputDelete" Content=" x " Padding="5,0,5,0" Margin="4,0,0,0" ToolTip="Alle Eingabefelder löschen" />
                 </StackPanel>
               
             </StackPanel>
