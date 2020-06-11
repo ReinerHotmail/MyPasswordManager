@@ -157,6 +157,27 @@ namespace MyPasswordManager
             SetSetting("Left", WindowMyPasswordManager.Left.ToString());
         }
 
-    
+        private void TextBoxFilter_KeyUp(object sender, KeyEventArgs e)
+        {
+            PwDatToListView(TextBoxFilter.Text);
+     
+
+        }
+
+        private void ButtonFilterClear_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxFilter.Text = "";
+            PwDatToListView("");
+        }
+
+        private void ButtonExImport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

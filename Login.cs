@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MyPasswordManager
@@ -18,7 +19,9 @@ namespace MyPasswordManager
             StackPanelUser.Visibility = Visibility.Visible;
             StackPanelPath.Visibility = Visibility.Visible;
             StackPanelMainLeft.Visibility = Visibility.Collapsed;
-            StackPanelTable.Visibility = Visibility.Collapsed;
+            StackPanelFilter.Visibility = Visibility.Collapsed;
+            StackPanelHelp.Visibility = Visibility.Collapsed;
+            ListViewPwDat.Visibility = Visibility.Collapsed;
 
             PmPath = GetSetting("PmPath");
             SelectPasswordFile();
@@ -95,7 +98,12 @@ namespace MyPasswordManager
                 StackPanelUser.Visibility = Visibility.Collapsed;
                 StackPanelPath.Visibility = Visibility.Collapsed;
                 StackPanelMainLeft.Visibility = Visibility.Visible;
-                StackPanelTable.Visibility = Visibility.Visible;
+                StackPanelFilter.Visibility = Visibility.Visible;
+                StackPanelHelp.Visibility = Visibility.Visible;
+                ListViewPwDat.Visibility = Visibility.Visible;
+
+                PwDatToListView("");
+
             }
 
  
@@ -105,6 +113,29 @@ namespace MyPasswordManager
 
         }
 
+        private void PwDatToListView(string filter)
+        {
+            ListViewPwDat.Items.Clear();
+
+            if (filter=="")
+            {
+                foreach (PwDat item in ListPw)
+                {
+                    ListViewPwDat.Items.Add(new PwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                }
+            }
+            else
+            {
+                foreach (PwDat item in ListPw)
+                {
+                    if (item.ToString().Contains(filter))
+                    {
+                        ListViewPwDat.Items.Add(new PwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                    }
+                   
+                }
+            }
+        }
 
         private void ButtonPath_Click(object sender, RoutedEventArgs e)
         {
