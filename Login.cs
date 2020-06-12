@@ -56,7 +56,7 @@ namespace MyPasswordManager
                 {
                     try
                     {
-                        ListPwAddRndData();
+                        AddRandomData();
 
                         File.WriteAllText(PmPath + "\\" + "Mp.txt", "");
 
@@ -80,7 +80,7 @@ namespace MyPasswordManager
             }
         }
 
-        private void ListPwAddRndData()
+        private void AddRandomData()
         {
 
             Random rnd = new Random();
@@ -248,8 +248,8 @@ namespace MyPasswordManager
             {
                 ShortLogin = 0;
                 TimerLoginShort.Stop();
-                TextBoxUser.Text = "reiner0533";
-                MyPasswordBox.Password = "reiner0533";
+                TextBoxUser.Text = MyRandom.Chars.Substring(15, 10);              
+                MyPasswordBox.Password = MyRandom.Chars.Substring(25, 10);
             }
         }
     }

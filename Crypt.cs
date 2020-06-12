@@ -202,7 +202,7 @@ namespace MyPasswordManager
         {
             ListPw.Clear();
 
-            ListPwAddRndData();
+            AddRandomData();
 
             string[] s = File.ReadAllLines(pathAndFile);
 
