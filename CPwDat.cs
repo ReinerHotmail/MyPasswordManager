@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MyPasswordManager
 {
-    class PwDat
+    public class CPwDat
     {
         public string Title { get; set; }
         public string WebAdr { get; set; }

@@ -31,8 +31,8 @@ namespace MyPasswordManager
             // Wichtig ist hier das Padding, welches wir unbedingt definieren müssen.
             Aes AESCrypto = Aes.Create();
             AESCrypto.Padding = PaddingMode.Zeros;
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + "12345678901234567890abcd").Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "1234abcd").Substring(0, 16), 16);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text+ "12345678901234567890abcd").Substring(0, 32), 32);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "123456abcde").Substring(0, 16), 16);
 
 
             try
@@ -70,7 +70,7 @@ namespace MyPasswordManager
                     string[] b = item.Split(";");
                     if (b.Length==6)
                     {
-                        PwDat pw = new PwDat();
+                        CPwDat pw = new CPwDat();
                         pw.Title = b[0].Trim();
                         pw.WebAdr = b[1].Trim();
                         pw.User = b[2].Trim();
@@ -83,14 +83,14 @@ namespace MyPasswordManager
                     {
                         if (ListPw.Count==0)
                         {
-                            MessageBox.Show("Falsches Passwort");
+                            MessageBox.Show("Passwort passt nicht\n\nPasswort oder Directory ändern");
                             ok = false;
                             break;
                         }
-                        else
-                        {
-                            MessageBox.Show("Fehler bei Datensatz " + ListPw.Count, "", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
+                        //else
+                        //{
+                        //    MessageBox.Show("Fehler bei Datensatz " + ListPw.Count, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //}
                 
                     }
 
@@ -114,7 +114,7 @@ namespace MyPasswordManager
             // ---------------     Verschlüsseln    -------------------------------
             // Erstelle eine Instanz von AES und weise ihr einen Schlüssel und Initialisierungsvektor zu
             Aes AESCrypto = Aes.Create();
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + "12345678901234567890abcd").Substring(0, 32), 32);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + "12345678901234567890abcd").Substring(0, 32), 32);
             AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "1234abcd").Substring(0, 16), 16);
 
 
@@ -138,7 +138,7 @@ namespace MyPasswordManager
                 //while ((data = inputStream.ReadByte()) != -1)
                 //    cStream.WriteByte((byte)data);
 
-                foreach (PwDat item in ListPw)
+                foreach (CPwDat item in ListPw)
                 {
                     string strPw = item.ToString()+"\n";
 
@@ -168,27 +168,7 @@ namespace MyPasswordManager
         /// <param name="e"></param>
         private void CmdHashBilden_Click(object sender, RoutedEventArgs e)
         {
-            ListPw.Clear();
-
-            string[] s = File.ReadAllLines(PmPath +"\\"+"Passworte.txt");
-
-            //string[] b = s[0].Split(";");
-
-            foreach (string item in s)
-            {
-                string[] b = item.Split(";");
-                PwDat pw = new PwDat();
-                pw.Title = b[0];
-                pw.WebAdr = b[1];
-                pw.User = b[2];
-                pw.PW = b[3];
-                pw.Opt1 = b[4];
-                pw.Opt2 = b[5];
-                ListPw.Add(pw);
-            }
-
-
-
+            SimpleTxtToListPw(PmPath + "\\" + "Passworte.txt");
 
             return;
 
@@ -218,5 +198,28 @@ namespace MyPasswordManager
             }
         }
 
+        private void SimpleTxtToListPw(string pathAndFile)
+        {
+            ListPw.Clear();
+
+            ListPwAddRndData();
+
+            string[] s = File.ReadAllLines(pathAndFile);
+
+            //string[] b = s[0].Split(";");
+
+            foreach (string item in s)
+            {
+                string[] b = item.Split(";");
+                CPwDat pw = new CPwDat();
+                pw.Title = b[0];
+                pw.WebAdr = b[1];
+                pw.User = b[2];
+                pw.PW = b[3];
+                pw.Opt1 = b[4];
+                pw.Opt2 = b[5];
+                ListPw.Add(pw);
+            }
+        }
     }
 }

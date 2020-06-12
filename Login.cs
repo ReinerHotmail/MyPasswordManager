@@ -29,23 +29,25 @@ namespace MyPasswordManager
 
         private void SelectPasswordFile()
         {
-          
-
             if (PmPath == "")
             {
-                do
+                PmPath = GetPath();
+                if (PmPath == "")
                 {
-                    PmPath = GetPath();
-                } while (PmPath == "");
-
-                SetSetting("PmPath", PmPath);
+                    TextBoxPath.Background = System.Windows.Media.Brushes.LightPink;
+                    MessageBox.Show("Bitte einen Ordner für die Daten auswählen");
+                    return;
+                }
+                else
+                {
+                    SetSetting("PmPath", PmPath);
+                }
             }
-
-            LabelSelectedPath.Content = PmPath + "\\" + "Mp.txt";
+            TextBoxPath.Text = PmPath + "\\" + "Mp.txt";
 
             if (!File.Exists(PmPath + "\\" + "Mp.txt"))
             {
-                LabelSelectedPath.Background = System.Windows.Media.Brushes.LightPink;
+                TextBoxPath.Background = System.Windows.Media.Brushes.LightPink;
 
                 MessageBoxResult result =
                 MessageBox.Show("Die PasswordDatei 'Mp.txt'\nexisiert noch nicht\nNeu erstellen mit OK\nOder nach CANCEL neuen Pfad anwählen", "Achtung", MessageBoxButton.OKCancel, MessageBoxImage.Question);
@@ -54,8 +56,14 @@ namespace MyPasswordManager
                 {
                     try
                     {
+                        ListPwAddRndData();
+
                         File.WriteAllText(PmPath + "\\" + "Mp.txt", "");
-                        LabelSelectedPath.Background = System.Windows.Media.Brushes.LightGreen;
+
+                        EncryptFile();
+
+                        TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
+                        Login();
                     }
                     catch (Exception)
                     {
@@ -67,8 +75,30 @@ namespace MyPasswordManager
             }
             else
             {
-                LabelSelectedPath.Background = System.Windows.Media.Brushes.LightGreen;
+                TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
 
+            }
+        }
+
+        private void ListPwAddRndData()
+        {
+
+            Random rnd = new Random();
+
+            //ToDo File neu beschreibe
+            for (int k = 0; k < 2; k++)
+            {
+                string[] term = new string[6];
+
+                for (int i = 0; i < 6; i++)
+                {
+
+                    int len = rnd.Next(8, 32);
+                    int start = rnd.Next(MyRandom.Chars.Length - len - 1);
+                    term[i] = MyRandom.Chars.Substring(start, len);
+                }
+
+                ListPw.Add(new CPwDat { Title = "_" + term[0], WebAdr = term[1], User = term[2], PW = term[3], Opt1 = term[4], Opt2 = "_" + term[5] });
             }
         }
 
@@ -92,7 +122,7 @@ namespace MyPasswordManager
             ImageClock.Visibility = Visibility.Hidden;
 
 
-            if(DecryptFile())
+            if (DecryptFile())
             {
 
                 StackPanelUser.Visibility = Visibility.Collapsed;
@@ -106,9 +136,9 @@ namespace MyPasswordManager
 
             }
 
- 
 
-     
+
+
 
 
         }
@@ -117,34 +147,42 @@ namespace MyPasswordManager
         {
             ListViewPwDat.Items.Clear();
 
-            if (filter=="")
+            if (filter == "")
             {
-                foreach (PwDat item in ListPw)
+                foreach (CPwDat item in ListPw)
                 {
-                    ListViewPwDat.Items.Add(new PwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                    if (item.Title.StartsWith("_") && item.Opt2.StartsWith("_"))  //erster Random-Datensatz
+                        continue;
+                    ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
                 }
             }
             else
             {
-                foreach (PwDat item in ListPw)
+                foreach (CPwDat item in ListPw)
                 {
                     if (item.ToString().Contains(filter))
                     {
-                        ListViewPwDat.Items.Add(new PwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                        if (item.Title.StartsWith("_") && item.Opt2.StartsWith("_"))  //erster Random-Datensatz
+                            continue;
+                        ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
                     }
-                   
+
                 }
             }
         }
 
         private void ButtonPath_Click(object sender, RoutedEventArgs e)
         {
+
+            if (!CheckUsePwLen())
+                return;
+
             PmPath = "";
 
             SelectPasswordFile();
 
 
-    
+
 
         }
 
@@ -154,22 +192,14 @@ namespace MyPasswordManager
         //}
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (TextBoxUser.Text.Length < 8)
-            {
-                MessageBox.Show("Eingabe muss mindestens 8 Zeichen haben");
-                return;
-            }
-            if (MyPasswordBox.Password.Length < 8)
-            {
-                MessageBox.Show("Eingabe muss mindestens 8 Zeichen haben");
-                return;
-            }
 
+            if (!CheckUsePwLen())
+                return;
 
             PmPath = GetSetting("PmPath");
-            if (PmPath =="" || !File.Exists(PmPath +"\\"+"Mp.txt"))
+            if (PmPath == "" || !File.Exists(PmPath + "\\" + "Mp.txt"))
             {
-                MessageBox.Show("PasswordFile '\n"+ PmPath + "\\" + "Mp.txt' "+"\nexistiert nicht");
+                MessageBox.Show("PasswordFile '\n" + PmPath + "\\" + "Mp.txt' " + "\nexistiert nicht");
                 return;
             }
 
@@ -179,7 +209,20 @@ namespace MyPasswordManager
 
         }
 
-
+        private bool CheckUsePwLen()
+        {
+            if (TextBoxUser.Text.Length < 6 || TextBoxUser.Text.Length > 12)
+            {
+                MessageBox.Show("'User'  muss 6 bis 12 Zeichen haben");
+                return false;
+            }
+            if (MyPasswordBox.Password.Length < 8 || MyPasswordBox.Password.Length > 16)
+            {
+                MessageBox.Show("'Password'  muss 8 bis 16 Zeichen haben");
+                return false;
+            }
+            return true;
+        }
 
         private void LabelUserName_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -209,8 +252,5 @@ namespace MyPasswordManager
                 MyPasswordBox.Password = "reiner0533";
             }
         }
-
-
-
     }
 }

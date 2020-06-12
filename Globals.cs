@@ -11,7 +11,7 @@ namespace MyPasswordManager
         DispatcherTimer TimerStart = new DispatcherTimer();
         DispatcherTimer TimerLoginShort = new DispatcherTimer();
         string PmPath = "";
-        List<PwDat> ListPw = new List<PwDat>();
+        List<CPwDat> ListPw = new List<CPwDat>();
         int ShortLogin = 0;
 
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -24,7 +25,7 @@ namespace MyPasswordManager
     /// </summary>
     public partial class MainWindow : Window
     {
-    
+
         public MainWindow()
         {
             InitializeComponent();
@@ -59,11 +60,11 @@ namespace MyPasswordManager
             {
                 WindowMyPasswordManager.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             }
-          
+
 
             string h = GetSetting("Height");
 
-            if (h !="")
+            if (h != "")
             {
                 WindowMyPasswordManager.Height = Convert.ToDouble(h);
             }
@@ -160,7 +161,7 @@ namespace MyPasswordManager
         private void TextBoxFilter_KeyUp(object sender, KeyEventArgs e)
         {
             PwDatToListView(TextBoxFilter.Text);
-     
+
 
         }
 
@@ -170,12 +171,110 @@ namespace MyPasswordManager
             PwDatToListView("");
         }
 
+        public static bool DoExport = false;
+        public static bool DoImport = false;
         private void ButtonExImport_Click(object sender, RoutedEventArgs e)
         {
+            WindowExImport winExIm = new WindowExImport(TextBoxUser.Text, MyPasswordBox.Password);
+            bool? result = winExIm.ShowDialog();
+
+
+
+            if (result != true)
+                return;
+
+            string temp = System.IO.Path.GetTempPath();
+
+            if (DoExport)
+            {
+                MessageBox.Show("Die Daten werden in lesbarer Form (TXT-Datei) ausgegeben\n" +
+                                "Bitte die Datei\n" +
+                                "PASSWORT.TXT\n" +
+                                "aus dem angezeigten Ordner nach Gebrauch\n" +
+                                "sofort löschen !!! ");
+
+
+                string tempPath = System.IO.Path.GetTempPath();
+
+
+                try
+                {
+                    using (StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(tempPath, "PASSWORT.TXT")))
+                    {
+                        foreach (CPwDat item in ListPw)
+                        {
+                            if (item.Title.StartsWith("_") && item.Opt2.StartsWith("_"))
+                                continue;
+                            string line = item.Title + ";" + item.WebAdr + ";" + item.User + ";" + item.PW + ";" + item.Opt1 + ";" + item.Opt2;
+                            outputFile.WriteLine(line);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Fehler beim Schreiben von PASSWORT.TXT");
+                }
+
+                if (Directory.Exists(temp))
+                    Process.Start("explorer.exe", tempPath);
+
+            }
+
+
+
+            if (DoImport)
+            {
+
+                MessageBoxResult doImport = 
+                MessageBox.Show("Die importiere Datei überschreibt alle Daten\nWirklich importieren ?", "Achtung", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+
+                if (doImport != MessageBoxResult.Yes)
+                    return;
+
+                System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
+                ofd.ShowDialog();
+
+                if (ofd.FileName == "")
+                    return;
+
+                SimpleTxtToListPw(ofd.FileName);
+
+                PwDatToListView("");
+
+                EncryptFile();
+
+                //ToDo PASSWORTE lesen
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
         private void ButtonHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonLoginNew_Click(object sender, RoutedEventArgs e)
         {
 
         }
