@@ -19,6 +19,8 @@ namespace MyPasswordManager
             StackPanelUser.Visibility = Visibility.Visible;
             StackPanelPath.Visibility = Visibility.Visible;
             StackPanelMainLeft.Visibility = Visibility.Collapsed;
+            StackPanelMainRight.Visibility = Visibility.Collapsed;
+            LabelDataCount.Visibility= Visibility.Collapsed;
             StackPanelFilter.Visibility = Visibility.Collapsed;
             StackPanelHelp.Visibility = Visibility.Collapsed;
             ListViewPwDat.Visibility = Visibility.Collapsed;
@@ -128,6 +130,8 @@ namespace MyPasswordManager
                 StackPanelUser.Visibility = Visibility.Collapsed;
                 StackPanelPath.Visibility = Visibility.Collapsed;
                 StackPanelMainLeft.Visibility = Visibility.Visible;
+                StackPanelMainRight.Visibility = Visibility.Visible;
+                LabelDataCount.Visibility = Visibility.Visible;
                 StackPanelFilter.Visibility = Visibility.Visible;
                 StackPanelHelp.Visibility = Visibility.Visible;
                 ListViewPwDat.Visibility = Visibility.Visible;
@@ -143,32 +147,47 @@ namespace MyPasswordManager
 
         }
 
-        private void PwDatToListView(string filter)
+        private void PwDatToListView(string filterIn)
         {
+            string filter = filterIn.ToUpper();
+            int underlineCount = 0;
+
             ListViewPwDat.Items.Clear();
+
+            ListPw.Sort();
 
             if (filter == "")
             {
                 foreach (CPwDat item in ListPw)
                 {
                     if (item.Title.StartsWith("_") && item.Opt2.StartsWith("_"))  //erster Random-Datensatz
+                    {
+                        underlineCount++;
                         continue;
-                    ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                    }
+                       
+                    ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2, WebAdr = item.WebAdr });
                 }
             }
             else
             {
                 foreach (CPwDat item in ListPw)
                 {
-                    if (item.ToString().Contains(filter))
+                    if (item.ToString().ToUpper().Contains(filter))
                     {
                         if (item.Title.StartsWith("_") && item.Opt2.StartsWith("_"))  //erster Random-Datensatz
+                        {
+                            underlineCount++;
                             continue;
-                        ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, WebAdr = item.WebAdr, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2 });
+                        }
+                        ListViewPwDat.Items.Add(new CPwDat { Title = item.Title, User = item.User, PW = item.PW, Opt1 = item.Opt1, Opt2 = item.Opt2, WebAdr = item.WebAdr });
                     }
 
                 }
             }
+
+            LabelDataCount.Content = (ListPw.Count-underlineCount).ToString();
+
         }
 
         private void ButtonPath_Click(object sender, RoutedEventArgs e)
@@ -224,6 +243,12 @@ namespace MyPasswordManager
             return true;
         }
 
+        private void TimerStart_Tick(object sender, EventArgs e)
+        {
+            TimerStart.Stop();
+            Login();
+        }
+
         private void LabelUserName_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (!TimerLoginShort.IsEnabled)
@@ -251,6 +276,11 @@ namespace MyPasswordManager
                 TextBoxUser.Text = MyRandom.Chars.Substring(15, 10);              
                 MyPasswordBox.Password = MyRandom.Chars.Substring(25, 10);
             }
+        }
+
+        private void TimerLoginShort_Tick(object sender, EventArgs e)
+        {
+            TimerLoginShort.Stop();
         }
     }
 }

@@ -43,10 +43,7 @@ namespace MyPasswordManager
 
         }
 
-        private void TimerLoginShort_Tick(object sender, EventArgs e)
-        {
-            TimerLoginShort.Stop();
-        }
+     
 
         private void SetWindowLayout()
         {
@@ -82,69 +79,9 @@ namespace MyPasswordManager
             }
         }
 
-        private void TimerStart_Tick(object sender, EventArgs e)
-        {
-            TimerStart.Stop();
-            Login();
-        }
 
 
 
-
-        /// <summary>
-        /// Erweitert zu kurze Kennwörter mit Nullen
-        /// </summary>
-        /// <param name="key">Kennwort</param>
-        /// <param name="newKeyLength">Neue Kennwortlänge</param>
-        /// <returns></returns>
-        private byte[] DoExtendKey(string key, int newKeyLength)
-        {
-            byte[] bKey = new byte[newKeyLength];
-            byte[] tmpKey = Encoding.UTF8.GetBytes(key);
-
-            for (int i = 0; i < key.Length; i++)
-            {
-                bKey[i] = tmpKey[i];
-            }
-
-            return bKey;
-        }
-
-        /// <summary>
-        /// Erweitert zu kurze Initialisierungsvektoren mit Nullen.
-        /// </summary>
-        /// <param name="newBlockSize">Neue Blockgröße</param>
-        /// <returns></returns>
-        private byte[] DoCreateBlocksize(string iv, int newBlockSize)
-        {
-
-            byte[] bIv = new byte[newBlockSize];
-            byte[] tmpIv = Encoding.UTF8.GetBytes(iv);
-
-            for (int i = 0; i < iv.Length; i++)
-            {
-                bIv[i] = tmpIv[i];
-            }
-
-            return bIv;
-
-
-        }
-
-
-
-
-
-
-        /// <summary>
-        /// Verschlüsselt eine Datei.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CmdDateiVerschlüsseln_Click(object sender, RoutedEventArgs e)
-        {
-            EncryptFile();
-        }
 
         private void WindowMyPasswordManager_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -274,9 +211,6 @@ namespace MyPasswordManager
 
         }
 
-        private void ButtonLoginNew_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }

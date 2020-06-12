@@ -12,15 +12,7 @@ namespace MyPasswordManager
     public partial class MainWindow
     {
 
-        /// <summary>
-        /// Entschlüsselt eine Datei.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CmdDateiEntschlüsseln_Click(object sender, RoutedEventArgs e)
-        {
-            DecryptFile();
-        }
+
 
         private bool DecryptFile()
         {
@@ -152,7 +144,7 @@ namespace MyPasswordManager
                 //inputStream.Close();
                 cStream.Close();
                 outputStream.Close();
-                MessageBox.Show("Verschlüsselung abgeschlossen!", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
             }
             catch
             {
@@ -161,42 +153,8 @@ namespace MyPasswordManager
 
         }
 
-        /// <summary>
-        /// Berechnet den Hashwert einer Datei.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CmdHashBilden_Click(object sender, RoutedEventArgs e)
-        {
-            SimpleTxtToListPw(PmPath + "\\" + "Passworte.txt");
+    
 
-            return;
-
-
-
-            // Erstelle eine Instanz von MD5
-            MD5 MD5Hash = MD5.Create();
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == true)
-            {
-                try
-                {
-                    // Erstelle einen Inputstream
-                    FileStream inputStream = new FileStream(openFileDialog1.FileName, FileMode.Open);
-
-                    // Berechne den Hashwert und schreibe ihn in ein Byte-Array
-                    byte[] hash = MD5Hash.ComputeHash(inputStream);
-                    // Wandel ihn Byte für Byte in eine Zeichenkette um (Dez -> Hex)
-                    txtHash.Text = BitConverter.ToString(hash).Replace("-", "").ToLower(); ;
-
-                    inputStream.Close();
-                }
-                catch
-                {
-                    MessageBox.Show("Ein Fehler ist aufgetreten!", "", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
 
         private void SimpleTxtToListPw(string pathAndFile)
         {
@@ -220,6 +178,48 @@ namespace MyPasswordManager
                 pw.Opt2 = b[5];
                 ListPw.Add(pw);
             }
+        }
+
+
+
+        /// <summary>
+        /// Erweitert zu kurze Kennwörter mit Nullen
+        /// </summary>
+        /// <param name="key">Kennwort</param>
+        /// <param name="newKeyLength">Neue Kennwortlänge</param>
+        /// <returns></returns>
+        private byte[] DoExtendKey(string key, int newKeyLength)
+        {
+            byte[] bKey = new byte[newKeyLength];
+            byte[] tmpKey = Encoding.UTF8.GetBytes(key);
+
+            for (int i = 0; i < key.Length; i++)
+            {
+                bKey[i] = tmpKey[i];
+            }
+
+            return bKey;
+        }
+
+        /// <summary>
+        /// Erweitert zu kurze Initialisierungsvektoren mit Nullen.
+        /// </summary>
+        /// <param name="newBlockSize">Neue Blockgröße</param>
+        /// <returns></returns>
+        private byte[] DoCreateBlocksize(string iv, int newBlockSize)
+        {
+
+            byte[] bIv = new byte[newBlockSize];
+            byte[] tmpIv = Encoding.UTF8.GetBytes(iv);
+
+            for (int i = 0; i < iv.Length; i++)
+            {
+                bIv[i] = tmpIv[i];
+            }
+
+            return bIv;
+
+
         }
     }
 }
