@@ -23,8 +23,8 @@ namespace MyPasswordManager
             // Wichtig ist hier das Padding, welches wir unbedingt definieren müssen.
             Aes AESCrypto = Aes.Create();
             AESCrypto.Padding = PaddingMode.Zeros;
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text+ "12345678901234567890abcd").Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "123456abcde").Substring(0, 16), 16);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text+ MyRandom.MoreKey).Substring(0, 32), 32);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + MyRandom.MoreIV).Substring(0, 16), 16);
 
 
             try
@@ -80,6 +80,7 @@ namespace MyPasswordManager
                             ButtonPath.Visibility = Visibility.Visible;
                             TextBoxPath.Text = PmPath + "\\" + "MyPW.txt";
                             TextBoxPath.Visibility = Visibility.Visible;
+                            ButtonDataCount.Visibility = Visibility.Visible;
                             TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
                             ok = false;
                             break;
@@ -109,7 +110,7 @@ namespace MyPasswordManager
         private void EncryptFile()
         {
 
-            // Ändern der Random-Daten 
+            // Ändern der Random-Daten - Verschlüsselung verbessert
             DeleteRandomData();
             AddRandomData();
 
@@ -119,8 +120,8 @@ namespace MyPasswordManager
             // ---------------     Verschlüsseln    -------------------------------
             // Erstelle eine Instanz von AES und weise ihr einen Schlüssel und Initialisierungsvektor zu
             Aes AESCrypto = Aes.Create();
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + "12345678901234567890abcd").Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "1234abcdasdfghj").Substring(0, 16), 16);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + MyRandom.MoreKey).Substring(0, 32), 32);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + MyRandom.MoreIV).Substring(0, 16), 16);
 
 
             try

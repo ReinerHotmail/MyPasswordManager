@@ -188,6 +188,7 @@ namespace MyPasswordManager
             TextBoxPath.Text = PmPath + "\\" + "MyPW.txt";
             TextBoxPath.Visibility = Visibility.Visible;
             TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
+            ButtonDataCount.Visibility = Visibility.Visible;
 
             ImageClock.Visibility = Visibility.Visible;
             TimerStart.Start();
