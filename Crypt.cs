@@ -112,7 +112,7 @@ namespace MyPasswordManager
             // Erstelle eine Instanz von AES und weise ihr einen Schlüssel und Initialisierungsvektor zu
             Aes AESCrypto = Aes.Create();
             AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + "12345678901234567890abcd").Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "1234abcd").Substring(0, 16), 16);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + "1234abcdasdfghj").Substring(0, 16), 16);
 
 
             try
