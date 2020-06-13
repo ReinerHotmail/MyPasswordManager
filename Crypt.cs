@@ -108,6 +108,14 @@ namespace MyPasswordManager
 
         private void EncryptFile()
         {
+
+            // Ändern der Random-Daten 
+            DeleteRandomData();
+            AddRandomData();
+
+
+
+
             // ---------------     Verschlüsseln    -------------------------------
             // Erstelle eine Instanz von AES und weise ihr einen Schlüssel und Initialisierungsvektor zu
             Aes AESCrypto = Aes.Create();
@@ -165,7 +173,7 @@ namespace MyPasswordManager
         {
             ListPw.Clear();
 
-            AddRandomData();
+            //AddRandomData();
 
             string[] s = File.ReadAllLines(pathAndFile);
 

@@ -20,7 +20,7 @@ namespace MyPasswordManager
             StackPanelPath.Visibility = Visibility.Visible;
             StackPanelMainLeft.Visibility = Visibility.Collapsed;
             StackPanelMainRight.Visibility = Visibility.Collapsed;
-            LabelDataCount.Visibility = Visibility.Collapsed;
+            ButtonDataCount.Visibility = Visibility.Collapsed;
             StackPanelFilter.Visibility = Visibility.Collapsed;
             StackPanelHelp.Visibility = Visibility.Collapsed;
             ListViewPwDat.Visibility = Visibility.Collapsed;
@@ -93,7 +93,7 @@ namespace MyPasswordManager
                 StackPanelPath.Visibility = Visibility.Collapsed;
                 StackPanelMainLeft.Visibility = Visibility.Visible;
                 StackPanelMainRight.Visibility = Visibility.Visible;
-                LabelDataCount.Visibility = Visibility.Visible;
+                ButtonDataCount.Visibility = Visibility.Visible;
                 StackPanelFilter.Visibility = Visibility.Visible;
                 StackPanelHelp.Visibility = Visibility.Visible;
                 ListViewPwDat.Visibility = Visibility.Visible;
@@ -148,7 +148,7 @@ namespace MyPasswordManager
                 }
             }
 
-            LabelDataCount.Content = (ListPw.Count - underlineCount).ToString();
+            ButtonDataCount.Content = (ListPw.Count - underlineCount).ToString();
 
         }
 
@@ -265,7 +265,7 @@ namespace MyPasswordManager
                 {
                     try
                     {
-                        AddRandomData();
+                        //AddRandomData();
 
                         File.WriteAllText(PmPath + "\\" + "MyPW.txt", "");
 
@@ -308,7 +308,7 @@ namespace MyPasswordManager
 
             Random rnd = new Random();
 
-            //ToDo File neu beschreibe
+            //ToDo File neu beschreiben
             for (int k = 0; k < 2; k++)
             {
                 string[] term = new string[6];
@@ -326,7 +326,18 @@ namespace MyPasswordManager
         }
 
 
+        private void DeleteRandomData()
+        {
+            for (int i = ListPw.Count-1; i >=0; i--)
+            {
+                if (ListPw[i].Title.StartsWith("_") && ListPw[i].Opt2.StartsWith("_"))
+                {
+                    ListPw.RemoveAt(i);
+                }
+            }
 
+
+        }
 
 
 

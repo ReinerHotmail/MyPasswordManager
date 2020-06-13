@@ -266,5 +266,10 @@ namespace MyPasswordManager
                 ButtonLogin_Click(null, null);
             }
         }
+
+        private void ButtonDataCount_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", PmPath);
+        }
     }
 }
