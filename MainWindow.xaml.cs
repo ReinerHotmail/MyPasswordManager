@@ -211,6 +211,60 @@ namespace MyPasswordManager
 
         }
 
+        private void CheckBoxOnTop_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckBoxOnTop.IsChecked==true)
+                WindowMyPasswordManager.Topmost = true;
+            else
+                WindowMyPasswordManager.Topmost = false;
 
+        }
+
+        private void ButtonTitleOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxTitelOut.Text);
+        }
+
+        private void ButtonWebAdrOut_Click(object sender, RoutedEventArgs e)
+        {
+            //Clipboard.SetData(DataFormats.Text, TextBoxWebAdrOut.Text);
+
+            var p = new Process();
+            p.StartInfo = new ProcessStartInfo(TextBoxWebAdrOut.Text)
+            {
+                UseShellExecute = true
+            };
+
+            p.Start();
+       
+        }
+
+        private void ButtonUserOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxUserOut.Text);
+        }
+
+        private void ButtonPwOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxPwOut.Text);
+        }
+
+        private void ButtonOpt1Out_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxOpt1Out.Text);
+        }
+
+        private void ButtonOpt2Out_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxOpt2Out.Text);
+        }
+
+        private void MyPasswordBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ButtonLogin_Click(null, null);
+            }
+        }
     }
 }

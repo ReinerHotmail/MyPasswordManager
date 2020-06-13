@@ -26,7 +26,7 @@ namespace MyPasswordManager
             if (dat !=null)
             {
                 MessageBoxResult result =
-                MessageBox.Show("Es gibt schon einen Datensatz mit dem Titel "+dat.Title+
+                MessageBox.Show("Es gibt schon einen Datensatz mit dem Titel\n     "+dat.Title+
                                 "\nÜberschreiben","Achtung",MessageBoxButton.YesNo,MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.No)
@@ -35,12 +35,15 @@ namespace MyPasswordManager
                 ListPw.Remove(dat);
             }
 
-            ListPw.Add(new CPwDat { Title = TextBoxTitelIn.Text.Trim(), WebAdr = TextBoxWebAdrIn.Text.Trim(), User = TextBoxUserIn.Text.Trim(), PW = TextBoxPwIn.Text.Trim(), Opt1 = TextBoxOpt1In.Text.Trim(), Opt2 = TextBoxOpt2In.Text.Trim() });
+            CPwDat newDat = new CPwDat { Title = TextBoxTitelIn.Text.Trim(), WebAdr = TextBoxWebAdrIn.Text.Trim(), User = TextBoxUserIn.Text.Trim(), PW = TextBoxPwIn.Text.Trim(), Opt1 = TextBoxOpt1In.Text.Trim(), Opt2 = TextBoxOpt2In.Text.Trim() };
+
+            ListPw.Add(newDat);
 
             PwDatToListView(TextBoxFilter.Text);
 
             EncryptFile();
 
+            WriteOutputFields(newDat);
         }
 
 
@@ -147,6 +150,10 @@ namespace MyPasswordManager
             PwDatToListView(TextBoxFilter.Text);
 
             EncryptFile();
+
+            //Löschen der Ausgangsanzeige
+            CPwDat dat = new CPwDat { Title = "", WebAdr = "", User = "", PW = "", Opt1 = "", Opt2 = "" };
+            WriteOutputFields(dat);
         }
 
         private void ButtonTitleDelete_Click(object sender, RoutedEventArgs e)

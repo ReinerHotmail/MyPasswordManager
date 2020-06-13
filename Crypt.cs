@@ -34,7 +34,7 @@ namespace MyPasswordManager
                 //     string neueDatei = System.IO.Path.ChangeExtension(openFileDialog1.FileName, ".txt");
                 // Erstelle einen Inputstream, Outputstream und Cryptostream
 
-                FileStream inputStream = new FileStream(PmPath + "\\" + "Mp.txt", FileMode.Open);
+                FileStream inputStream = new FileStream(PmPath + "\\" + "MyPW.txt", FileMode.Open);
 
           
 
@@ -76,6 +76,11 @@ namespace MyPasswordManager
                         if (ListPw.Count==0)
                         {
                             MessageBox.Show("Passwort passt nicht\n\nPasswort oder Directory ändern");
+
+                            ButtonPath.Visibility = Visibility.Visible;
+                            TextBoxPath.Text = PmPath + "\\" + "MyPW.txt";
+                            TextBoxPath.Visibility = Visibility.Visible;
+                            TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
                             ok = false;
                             break;
                         }
@@ -122,7 +127,7 @@ namespace MyPasswordManager
                 //  string neueDatei = System.IO.Path.ChangeExtension(openFileDialog1.FileName, ".crypt");
                 // Erstelle einen Inputstream, Outputstream und Cryptostream
                 //FileStream inputStream = new FileStream(PmPath + "\\" + "MpCopy.txt", FileMode.Open);
-                FileStream outputStream = new FileStream(PmPath + "\\" + "Mp.txt", FileMode.Create);
+                FileStream outputStream = new FileStream(PmPath + "\\" + "MyPW.txt", FileMode.Create);
                 CryptoStream cStream = new CryptoStream(outputStream, AESCrypto.CreateEncryptor(), CryptoStreamMode.Write);
 
                 // Verschlüssele nun jedes Byte bis zum Dateiende
