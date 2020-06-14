@@ -83,6 +83,7 @@ namespace MyPasswordManager
                             TextBoxPath.Text = PmPath + "\\" + "MyPW.txt";
                             TextBoxPath.Visibility = Visibility.Visible;
                             ButtonDataCount.Visibility = Visibility.Visible;
+                            ButtonChangeDirMain.Visibility = Visibility.Visible;
                             TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
                             ImagePw.Visibility = Visibility.Visible;
                             ok = false;

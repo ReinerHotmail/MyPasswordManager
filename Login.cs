@@ -21,6 +21,7 @@ namespace MyPasswordManager
             StackPanelMainLeft.Visibility = Visibility.Collapsed;
             StackPanelMainRight.Visibility = Visibility.Collapsed;
             ButtonDataCount.Visibility = Visibility.Collapsed;
+            ButtonChangeDirMain.Visibility = Visibility.Collapsed;
             StackPanelFilter.Visibility = Visibility.Collapsed;
             StackPanelHelp.Visibility = Visibility.Collapsed;
             ListViewPwDat.Visibility = Visibility.Collapsed;
@@ -94,6 +95,7 @@ namespace MyPasswordManager
                 StackPanelMainLeft.Visibility = Visibility.Visible;
                 StackPanelMainRight.Visibility = Visibility.Visible;
                 ButtonDataCount.Visibility = Visibility.Visible;
+                ButtonChangeDirMain.Visibility = Visibility.Visible;
                 StackPanelFilter.Visibility = Visibility.Visible;
                 StackPanelHelp.Visibility = Visibility.Visible;
                 ListViewPwDat.Visibility = Visibility.Visible;
@@ -192,7 +194,7 @@ namespace MyPasswordManager
             TextBoxPath.Visibility = Visibility.Visible;
             TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
             ButtonDataCount.Visibility = Visibility.Visible;
-
+            ButtonChangeDirMain.Visibility = Visibility.Visible;
             ImageClock.Visibility = Visibility.Visible;
             TimerStart.Start();
 

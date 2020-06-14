@@ -294,5 +294,22 @@ namespace MyPasswordManager
             //ButtonLogin.Content = loginImage[0..4] + " " + loginImage[4..8] + " " + loginImage[8..12] ;
         
         }
+
+ 
+
+  
+
+        private void ButtonChangeDirMain_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = 
+            MessageBox.Show("Um einen neuen Ablageort einzurichten wird das Programm runtergefahren\n" +
+                            "Es muss dann neu gestartet werden\n\nSoll dies ausgeführt werden ?", "Achtung", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result != MessageBoxResult.Yes)
+                return;
+
+            SetSetting("PmPath", "");
+            Environment.Exit(0);
+        }
     }
 }
