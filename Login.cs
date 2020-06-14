@@ -151,7 +151,7 @@ namespace MyPasswordManager
                 }
             }
 
-            ButtonDataCount.Content = "Datensätze: "+ (ListPw.Count - underlineCount).ToString();
+            ButtonDataCount.Content = "Records: "+ (ListPw.Count - underlineCount).ToString();
 
         }
 
