@@ -33,9 +33,7 @@ namespace MyPasswordManager
 
             SetWindowLayout();
 
-            TimerLoginShort.Interval = TimeSpan.FromSeconds(2);
-            TimerLoginShort.Tick += TimerLoginShort_Tick;
-
+  
 
             TimerStart.Interval = TimeSpan.FromSeconds(1);
             TimerStart.Tick += TimerStart_Tick;

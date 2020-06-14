@@ -347,38 +347,6 @@ namespace MyPasswordManager
 
 
 
-        private void LabelUserName_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (!TimerLoginShort.IsEnabled)
-            {
-                TimerLoginShort.Start();
-                ShortLogin = 1;
-            }
-        }
 
-        private void LabelPassword_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (ShortLogin == 1)
-            {
-                ShortLogin = 2;
-            }
-
-        }
-
-        private void ButtonLogin_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (ShortLogin == 2 && TimerLoginShort.IsEnabled)
-            {
-                ShortLogin = 0;
-                TimerLoginShort.Stop();
-                TextBoxUser.Text = MyRandom.Chars.Substring(15, 10);
-                MyPasswordBox.Password = MyRandom.Chars.Substring(25, 10);
-            }
-        }
-
-        private void TimerLoginShort_Tick(object sender, EventArgs e)
-        {
-            TimerLoginShort.Stop();
-        }
     }
 }
