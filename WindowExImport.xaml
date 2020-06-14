@@ -5,9 +5,9 @@
             <ColumnDefinition Width="493*" />
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="StackPanelUserHlp" Margin="10,10,10,10" Grid.ColumnSpan="1">
-            <Label x:Name="LabelUserNameHlp" Content="User-Name" Margin="0,2" />
+            <Label x:Name="LabelUserNameHlp" Content="User-Name         (2-12 Buchstaben)" Margin="0,2" />
             <TextBox x:Name="TextBoxUserHlp" Margin="0,2" FontSize="12" />
-            <Label x:Name="LabelPasswordHlp" Content="Password" Margin="0,2" />
+            <Label x:Name="LabelPasswordHlp" Content="Password            (Klick auf 3 Bildpositionen)" Margin="0,2" />
             <PasswordBox x:Name="MyPasswordBoxHlp" Margin="0,2" FontSize="12" />
             <Label Content=" " Margin="0,2" />
             <Button x:Name="ButtonExport" Content="Export" FontSize="12" Click="ButtonExport_Click" />
