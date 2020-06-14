@@ -75,13 +75,16 @@ namespace MyPasswordManager
                     {
                         if (ListPw.Count==0)
                         {
-                            MessageBox.Show("Passwort passt nicht\n\nPasswort oder Directory ändern");
+                            MessageBox.Show("Passwort passt nicht\n\nPasswort oder Directory ändern\n\n"+
+                                "Um die Daten neu anzulegen, muss die Datei 'MyPW.txt' gelöscht werden\n"+
+                                "Der Zugang zur Datei ist durch Klicken auf 'Datensätze' möglich");
 
                             ButtonPath.Visibility = Visibility.Visible;
                             TextBoxPath.Text = PmPath + "\\" + "MyPW.txt";
                             TextBoxPath.Visibility = Visibility.Visible;
                             ButtonDataCount.Visibility = Visibility.Visible;
                             TextBoxPath.Background = System.Windows.Media.Brushes.LightGreen;
+                            ImagePw.Visibility = Visibility.Visible;
                             ok = false;
                             break;
                         }

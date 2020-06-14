@@ -149,7 +149,7 @@ namespace MyPasswordManager
                 }
             }
 
-            ButtonDataCount.Content = (ListPw.Count - underlineCount).ToString();
+            ButtonDataCount.Content = "Datensätze: "+ (ListPw.Count - underlineCount).ToString();
 
         }
 
@@ -169,11 +169,11 @@ namespace MyPasswordManager
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            ImagePw.Visibility = Visibility.Hidden;
-
-
+           
             if (!CheckUsePwLen(true))
                 return;
+         
+            ImagePw.Visibility = Visibility.Hidden;
 
             PmPath = GetSetting("PmPath");
             if (PmPath == "" || !File.Exists(PmPath + "\\" + "MyPW.txt"))
