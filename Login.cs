@@ -24,7 +24,7 @@ namespace MyPasswordManager
             StackPanelFilter.Visibility = Visibility.Collapsed;
             StackPanelHelp.Visibility = Visibility.Collapsed;
             ListViewPwDat.Visibility = Visibility.Collapsed;
-
+            ImagePw.Visibility= Visibility.Visible; 
 
 
             ButtonPath.Visibility = Visibility.Hidden;
@@ -97,6 +97,7 @@ namespace MyPasswordManager
                 StackPanelFilter.Visibility = Visibility.Visible;
                 StackPanelHelp.Visibility = Visibility.Visible;
                 ListViewPwDat.Visibility = Visibility.Visible;
+             
 
                 PwDatToListView("");
 
@@ -168,6 +169,8 @@ namespace MyPasswordManager
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
+            ImagePw.Visibility = Visibility.Hidden;
+
 
             if (!CheckUsePwLen(true))
                 return;
@@ -197,11 +200,11 @@ namespace MyPasswordManager
 
         private bool CheckUsePwLen(bool msgYes)
         {
-            if (TextBoxUser.Text.Length < 6 || TextBoxUser.Text.Length > 12)
+            if (TextBoxUser.Text.Length < 2 || TextBoxUser.Text.Length > 12)
             {
                 if (!msgYes)
                     return false;
-                MessageBox.Show("Eingabe im LOGIN:\n'User'  muss 6 bis 12 Zeichen haben");
+                MessageBox.Show("Eingabe im LOGIN:\n'User'  muss 2 bis 12 Zeichen haben");
                 return false;
             }
             if (MyPasswordBox.Password.Length < 8 || MyPasswordBox.Password.Length > 16)

@@ -13,6 +13,7 @@ namespace MyPasswordManager
         string PmPath = "";
         List<CPwDat> ListPw = new List<CPwDat>();
         int ShortLogin = 0;
+        string LoginImage = "";
 
 
 

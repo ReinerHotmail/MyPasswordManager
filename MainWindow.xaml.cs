@@ -208,7 +208,8 @@ namespace MyPasswordManager
 
         private void ButtonHelp_Click(object sender, RoutedEventArgs e)
         {
-
+            Point position = Mouse.GetPosition(ImagePw);
+            TextBoxFilter.Text = position.ToString();
         }
 
         private void CheckBoxOnTop_Click(object sender, RoutedEventArgs e)
@@ -270,6 +271,30 @@ namespace MyPasswordManager
         private void ButtonDataCount_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("explorer.exe", PmPath);
+        }
+
+        private void ImagePw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Point position = Mouse.GetPosition(ImagePw);
+
+            double xd = ImagePw.ActualWidth / 44;
+            double yd = ImagePw.ActualHeight/ 12;
+
+            int x = (int)(position.X / xd);
+            int y = (int)(position.Y / yd);
+
+
+            if (LoginImage.Length == 12)
+                LoginImage = "";
+
+            
+            LoginImage += x.ToString("00") + y.ToString("00");
+
+            MyPasswordBox.Password = LoginImage;
+
+            //String loginImage = LoginImage + "                      ";
+            //ButtonLogin.Content = loginImage[0..4] + " " + loginImage[4..8] + " " + loginImage[8..12] ;
+        
         }
     }
 }

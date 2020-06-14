@@ -19,6 +19,7 @@ namespace MyPasswordManager
     {
         string user;
         string pw;
+        string LoginImageHlp = "";
 
         public WindowExImport(string user,string pw)
         {
@@ -55,6 +56,30 @@ namespace MyPasswordManager
 
             MainWindow.DoImport = true;
             DialogResult = true;
+        }
+
+        private void ImagePw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Point position = Mouse.GetPosition(ImagePw);
+
+            double xd = ImagePw.ActualWidth / 44;
+            double yd = ImagePw.ActualHeight / 12;
+
+            int x = (int)(position.X / xd);
+            int y = (int)(position.Y / yd);
+
+
+            if (LoginImageHlp.Length == 12)
+                LoginImageHlp = "";
+
+
+            LoginImageHlp += x.ToString("00") + y.ToString("00");
+
+            MyPasswordBoxHlp.Password = LoginImageHlp;
+
+            //String loginImage = LoginImageHlp + "                      ";
+
+            //ButtonExport.Content = loginImage[0..4] + " " + loginImage[4..8] + " " + loginImage[8..12];
         }
     }
 }
