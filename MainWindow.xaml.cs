@@ -198,15 +198,23 @@ namespace MyPasswordManager
 
         private void ButtonWebAdrOut_Click(object sender, RoutedEventArgs e)
         {
-            //Clipboard.SetData(DataFormats.Text, TextBoxWebAdrOut.Text);
-
-            var p = new Process();
-            p.StartInfo = new ProcessStartInfo(TextBoxWebAdrOut.Text)
+            try
             {
-                UseShellExecute = true
-            };
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(TextBoxWebAdrOut.Text)
+                {
+                    UseShellExecute = true
+                };
 
-            p.Start();
+                p.Start();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show(TextBoxWebAdrOut.Text + "\nkann nicht gestartet werden");
+            }
+
+
        
         }
 

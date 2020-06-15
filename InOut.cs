@@ -74,8 +74,20 @@ namespace MyPasswordManager
 
             TextBoxWebAdrOut.Text = selItem.WebAdr;
 
+            string s = selItem.WebAdr;
+            if (s.Contains(":"))
+            {
+                string[] sSplit = s.Split(":");
+                LabelWebAdrOut.Content = sSplit[0];
+                TextBoxWebAdrOut.Text = s.Substring(sSplit[0].Length + 1).Trim();
+            }
+            else
+            {
+                LabelWebAdrOut.Content = "Web-Adr";
+                TextBoxWebAdrOut.Text = s;
+            }
 
-            string s = selItem.User;
+            s = selItem.User;
             if (s.Contains(":"))
             {
                 string[] sSplit = s.Split(":");
