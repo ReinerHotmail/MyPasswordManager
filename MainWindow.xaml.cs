@@ -176,11 +176,7 @@ namespace MyPasswordManager
 
         }
 
-        private void ButtonHelp_Click(object sender, RoutedEventArgs e)
-        {
-            Point position = Mouse.GetPosition(ImagePw);
-            TextBoxFilter.Text = position.ToString();
-        }
+ 
 
         private void CheckBoxOnTop_Click(object sender, RoutedEventArgs e)
         {
@@ -210,6 +206,11 @@ namespace MyPasswordManager
 
             SetSetting("PmPath", "");
             Environment.Exit(0);
+        }
+
+        private void ButtonHlpVideoChangeItems_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
