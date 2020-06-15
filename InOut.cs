@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,7 +47,109 @@ namespace MyPasswordManager
             WriteOutputFields(newDat);
         }
 
+        #region Button OUT
+        private void ButtonTitleOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxTitelOut.Text);
+        }
 
+        private void ButtonWebAdrOut_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(TextBoxWebAdrOut.Text)
+                {
+                    UseShellExecute = true
+                };
+
+                p.Start();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show(TextBoxWebAdrOut.Text + "\nkann nicht gestartet werden");
+            }
+
+
+
+        }
+
+        private void ButtonUserOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxUserOut.Text);
+        }
+
+        private void ButtonPwOut_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxPwOut.Text);
+        }
+
+        private void ButtonOpt1Out_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxOpt1Out.Text);
+        }
+
+        private void ButtonOpt2Out_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, TextBoxOpt2Out.Text);
+        }
+        #endregion
+
+        #region Button Delete
+        private void ButtonTitleDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxTitelIn.Text = "";
+        }
+
+        private void ButtonWebAdrDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxWebAdrIn.Text = "";
+        }
+
+        private void ButtonUser1Delete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxUserIn.Text = "";
+        }
+
+        private void ButtonPwDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxPwIn.Text = "";
+        }
+
+        private void ButtonOpt1Delete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxOpt1In.Text = "";
+        }
+
+        private void ButtonOpt2Delete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxOpt2In.Text = "";
+        }
+
+        private void ButtonInputDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxTitelIn.Text = "";
+            TextBoxWebAdrIn.Text = "";
+            TextBoxUserIn.Text = "";
+            TextBoxPwIn.Text = "";
+            TextBoxOpt1In.Text = "";
+            TextBoxOpt2In.Text = "";
+        }
+
+        #endregion
+        private void MyPasswordBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ButtonLogin_Click(null, null);
+            }
+        }
+
+        private void ButtonDataCount_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("explorer.exe", PmPath);
+        }
 
         private void ListViewPwDat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -168,44 +271,6 @@ namespace MyPasswordManager
             WriteOutputFields(dat);
         }
 
-        private void ButtonTitleDelete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxTitelIn.Text = "";
-        }
 
-        private void ButtonWebAdrDelete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxWebAdrIn.Text = "";
-        }
-
-        private void ButtonUser1Delete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxUserIn.Text = "";
-        }
-
-        private void ButtonPwDelete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxPwIn.Text = "";
-        }
-
-        private void ButtonOpt1Delete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxOpt1In.Text = "";
-        }
-
-        private void ButtonOpt2Delete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxOpt2In.Text = "";
-        }
-
-        private void ButtonInputDelete_Click(object sender, RoutedEventArgs e)
-        {
-            TextBoxTitelIn.Text = "";
-            TextBoxWebAdrIn.Text = "";
-            TextBoxUserIn.Text = "";
-            TextBoxPwIn.Text = "";
-            TextBoxOpt1In.Text = "";
-            TextBoxOpt2In.Text = "";
-        }
     }
 }

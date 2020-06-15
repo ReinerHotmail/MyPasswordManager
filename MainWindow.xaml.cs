@@ -33,8 +33,8 @@ namespace MyPasswordManager
 
             SetWindowLayout();
 
-            TimerStart.Interval = TimeSpan.FromSeconds(1);
-            TimerStart.Tick += TimerStart_Tick;
+            TimerLoginStart.Interval = TimeSpan.FromSeconds(1);
+            TimerLoginStart.Tick += TimerLoginStart_Tick;
         }
 
      
@@ -191,89 +191,9 @@ namespace MyPasswordManager
 
         }
 
-        private void ButtonTitleOut_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, TextBoxTitelOut.Text);
-        }
-
-        private void ButtonWebAdrOut_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var p = new Process();
-                p.StartInfo = new ProcessStartInfo(TextBoxWebAdrOut.Text)
-                {
-                    UseShellExecute = true
-                };
-
-                p.Start();
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show(TextBoxWebAdrOut.Text + "\nkann nicht gestartet werden");
-            }
 
 
-       
-        }
-
-        private void ButtonUserOut_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, TextBoxUserOut.Text);
-        }
-
-        private void ButtonPwOut_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, TextBoxPwOut.Text);
-        }
-
-        private void ButtonOpt1Out_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, TextBoxOpt1Out.Text);
-        }
-
-        private void ButtonOpt2Out_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetData(DataFormats.Text, TextBoxOpt2Out.Text);
-        }
-
-        private void MyPasswordBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                ButtonLogin_Click(null, null);
-            }
-        }
-
-        private void ButtonDataCount_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("explorer.exe", PmPath);
-        }
-
-        private void ImagePw_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Point position = Mouse.GetPosition(ImagePw);
-
-            double xd = ImagePw.ActualWidth / 44;
-            double yd = ImagePw.ActualHeight/ 12;
-
-            int x = (int)(position.X / xd);
-            int y = (int)(position.Y / yd);
-
-
-            if (LoginImage.Length == 12)
-                LoginImage = "";
-
-            
-            LoginImage += x.ToString("00") + y.ToString("00");
-
-            MyPasswordBox.Password = LoginImage;
-
-            //String loginImage = LoginImage + "                      ";
-            //ButtonLogin.Content = loginImage[0..4] + " " + loginImage[4..8] + " " + loginImage[8..12] ;
-        
-        }
+     
 
  
 

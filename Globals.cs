@@ -8,7 +8,7 @@ namespace MyPasswordManager
     
     public partial class MainWindow
     {
-        DispatcherTimer TimerStart = new DispatcherTimer();
+        DispatcherTimer TimerLoginStart = new DispatcherTimer();
      
         string PmPath = "";
         List<CPwDat> ListPw = new List<CPwDat>();

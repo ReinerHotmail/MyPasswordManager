@@ -12,8 +12,6 @@ namespace MyPasswordManager
     public partial class MainWindow
     {
 
-
-
         private bool DecryptFile()
         {
             bool ok = true;
@@ -23,8 +21,8 @@ namespace MyPasswordManager
             // Wichtig ist hier das Padding, welches wir unbedingt definieren müssen.
             Aes AESCrypto = Aes.Create();
             AESCrypto.Padding = PaddingMode.Zeros;
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text+ MyRandom.MoreKey).Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + MyRandom.MoreIV).Substring(0, 16), 16);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text+ CMyRandom.MoreKey).Substring(0, 32), 32);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + CMyRandom.MoreIV).Substring(0, 16), 16);
 
 
             try
@@ -124,8 +122,8 @@ namespace MyPasswordManager
             // ---------------     Verschlüsseln    -------------------------------
             // Erstelle eine Instanz von AES und weise ihr einen Schlüssel und Initialisierungsvektor zu
             Aes AESCrypto = Aes.Create();
-            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + MyRandom.MoreKey).Substring(0, 32), 32);
-            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + MyRandom.MoreIV).Substring(0, 16), 16);
+            AESCrypto.Key = DoExtendKey((MyPasswordBox.Password + TextBoxUser.Text + CMyRandom.MoreKey).Substring(0, 32), 32);
+            AESCrypto.IV = DoCreateBlocksize((TextBoxUser.Text + CMyRandom.MoreIV).Substring(0, 16), 16);
 
 
             try
@@ -172,33 +170,6 @@ namespace MyPasswordManager
         }
 
     
-
-
-        private void SimpleTxtToListPw(string pathAndFile)
-        {
-            ListPw.Clear();
-
-            //AddRandomData();
-
-            string[] s = File.ReadAllLines(pathAndFile);
-
-            //string[] b = s[0].Split(";");
-
-            foreach (string item in s)
-            {
-                string[] b = item.Split(";");
-                CPwDat pw = new CPwDat();
-                pw.Title = b[0];
-                pw.WebAdr = b[1];
-                pw.User = b[2];
-                pw.PW = b[3];
-                pw.Opt1 = b[4];
-                pw.Opt2 = b[5];
-                ListPw.Add(pw);
-            }
-        }
-
-
 
         /// <summary>
         /// Erweitert zu kurze Kennwörter mit Nullen
