@@ -180,26 +180,7 @@ namespace MyPasswordManager
 
                 EncryptFile();
 
-                //ToDo PASSWORTE lesen
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         }

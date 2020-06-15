@@ -19,6 +19,7 @@ namespace MyPasswordManager
             StackPanelUser.Visibility = Visibility.Visible;
             StackPanelPath.Visibility = Visibility.Visible;
             StackPanelMainLeft.Visibility = Visibility.Collapsed;
+            StackPanelMainLeft2.Visibility = Visibility.Collapsed;
             StackPanelMainRight.Visibility = Visibility.Collapsed;
             ButtonDataCount.Visibility = Visibility.Collapsed;
             ButtonChangeDirMain.Visibility = Visibility.Collapsed;
@@ -93,6 +94,7 @@ namespace MyPasswordManager
                 StackPanelUser.Visibility = Visibility.Collapsed;
                 StackPanelPath.Visibility = Visibility.Collapsed;
                 StackPanelMainLeft.Visibility = Visibility.Visible;
+                StackPanelMainLeft2.Visibility = Visibility.Visible;
                 StackPanelMainRight.Visibility = Visibility.Visible;
                 ButtonDataCount.Visibility = Visibility.Visible;
                 ButtonChangeDirMain.Visibility = Visibility.Visible;
