@@ -308,5 +308,14 @@ namespace MyPasswordManager
                 Process.Start("explorer.exe", tempPath);
 
         }
+
+  
+
+        private void LabelVersion_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            FileInfo fi = new FileInfo("Resources\\SettingDat.txt");
+            LabelVersion.ToolTip = fi.FullName;
+        }
     }
 }
