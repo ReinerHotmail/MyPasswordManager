@@ -212,6 +212,28 @@ namespace MyPasswordManager
 
         private void ButtonHelp_Click(object sender, RoutedEventArgs e)
         {
+
+            try
+            {
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo("Resources\\Installation.pdf")
+                {
+                    UseShellExecute = true
+                };
+
+                p.Start();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Resources\\Installation.pdf" + "\nkann nicht gestartet werden");
+            }
+
+
+            return;
+
+
+
             string tempPath = System.IO.Path.GetTempPath();
 
             Random rnd = new Random();
