@@ -33,12 +33,8 @@ namespace MyPasswordManager
 
             SetWindowLayout();
 
-  
-
             TimerStart.Interval = TimeSpan.FromSeconds(1);
             TimerStart.Tick += TimerStart_Tick;
-
-
         }
 
      
@@ -48,33 +44,28 @@ namespace MyPasswordManager
             string w = GetSetting("Width");
 
             if (w != "")
-            {
                 WindowMyPasswordManager.Width = Convert.ToDouble(w);
-            }
             else
-            {
                 WindowMyPasswordManager.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            }
 
 
             string h = GetSetting("Height");
 
             if (h != "")
-            {
                 WindowMyPasswordManager.Height = Convert.ToDouble(h);
-            }
+            else
+                WindowMyPasswordManager.Height= System.Windows.SystemParameters.PrimaryScreenHeight/4.0;
+          
             string t = GetSetting("Top");
 
             if (t != "")
-            {
                 WindowMyPasswordManager.Top = Convert.ToDouble(t);
-            }
+
             string l = GetSetting("Left");
 
             if (l != "")
-            {
                 WindowMyPasswordManager.Left = Convert.ToDouble(l);
-            }
+
         }
 
 
