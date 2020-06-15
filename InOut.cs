@@ -175,10 +175,8 @@ namespace MyPasswordManager
             TextBoxTitelOut.Text = selItem.Title;
 
 
-            TextBoxWebAdrOut.Text = selItem.WebAdr;
-
             string s = selItem.WebAdr;
-            if (s.Contains(":"))
+            if (s.Contains(":") && !s.ToUpper().Contains("WWW.") && !s.ToUpper().Contains("HTTP"))
             {
                 string[] sSplit = s.Split(":");
                 LabelWebAdrOut.Content = sSplit[0];
