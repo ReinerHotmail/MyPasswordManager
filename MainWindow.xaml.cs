@@ -94,7 +94,9 @@ namespace MyPasswordManager
         private void ButtonFilterClear_Click(object sender, RoutedEventArgs e)
         {
             TextBoxFilter.Text = "";
+            TextBoxFilter.Focus();
             PwDatToListView("");
+
         }
 
         public static bool DoExport = false;
@@ -338,6 +340,66 @@ namespace MyPasswordManager
 
             FileInfo fi = new FileInfo("Resources\\SettingDat.txt");
             LabelVersion.ToolTip = fi.FullName;
+        }
+
+        private void ButtonTitleOut_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxTitelOut.Background = Brushes.Gray;
+        }
+
+        private void ButtonTitleOut_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxTitelOut.Background = Brushes.White;
+        }
+
+        private void ButtonWebAdrOut_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxWebAdrOut.Background = Brushes.Gray;
+        }
+
+        private void ButtonWebAdrOut_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxWebAdrOut.Background = Brushes.White;
+        }
+
+        private void ButtonUserOut_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxUserOut.Background = Brushes.Gray;
+        }
+
+        private void ButtonUserOut_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxUserOut.Background = Brushes.White;
+        }
+
+        private void ButtonPwOut_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxPwOut.Background = Brushes.Gray;
+        }
+
+        private void ButtonPwOut_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxPwOut.Background = Brushes.White;
+        }
+
+        private void ButtonOpt1Out_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxOpt1Out.Background = Brushes.Gray;
+        }
+
+        private void ButtonOpt1Out_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxOpt1Out.Background = Brushes.White;
+        }
+
+        private void ButtonOpt2Out_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TextBoxOpt2Out.Background = Brushes.Gray;
+        }
+
+        private void ButtonOpt2Out_MouseLeave(object sender, MouseEventArgs e)
+        {
+            TextBoxOpt2Out.Background = Brushes.White;
         }
     }
 }
