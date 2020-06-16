@@ -218,7 +218,7 @@ namespace MyPasswordManager
             try
             {
                 var p = new Process();
-                p.StartInfo = new ProcessStartInfo("Resources\\Installation.pdf")
+                p.StartInfo = new ProcessStartInfo("Resources\\Manual.pdf")
                 {
                     UseShellExecute = true
                 };
