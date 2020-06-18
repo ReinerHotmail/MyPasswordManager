@@ -335,12 +335,7 @@ namespace MyPasswordManager
 
   
 
-        private void LabelVersion_MouseMove(object sender, MouseEventArgs e)
-        {
 
-            FileInfo fi = new FileInfo("Resources\\SettingDat.txt");
-            LabelVersion.ToolTip = fi.FullName;
-        }
 
         private void ButtonTitleOut_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -400,6 +395,25 @@ namespace MyPasswordManager
         private void ButtonOpt2Out_MouseLeave(object sender, MouseEventArgs e)
         {
             TextBoxOpt2Out.Background = Brushes.White;
+        }
+
+        private void LabelVersion_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo("Resources\\SettingDat.txt")
+                {
+                    UseShellExecute = true
+                };
+
+                p.Start();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Resources\\SettingDat.txt" + "\nkann nicht gestartet werden");
+            }
         }
     }
 }
